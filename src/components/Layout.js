@@ -5,11 +5,41 @@ import Navbar from '../components/Navbar'
 import './all.sass'
 import useSiteMetadata from './SiteMetadata'
 import { withPrefix } from 'gatsby'
+import { Grommet, Anchor, Box, Text } from "grommet"
+import { materialLight } from "grommet/themes"
 
 const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata()
   return (
-    <div>
+    <Grommet
+      theme={materialLight}
+      full
+      style={{
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+    <Grommet 
+      style={{display: "flex", flexDirection:"row"}}
+    >
+    <Box 
+      border={{ color: 'accent-1', size: 'large' }}
+      pad="large"
+    >
+      <Text
+        size="small"
+      >Aruba</Text>
+    </Box>
+    <Box 
+      border={{ color: 'brand', size: 'large' }}
+      pad="large"
+    >
+      <Text
+        size="large"
+      >Testing</Text>
+    </Box>
+    </Grommet>
+    
       <Helmet>
         <html lang="en" />
         <title>{title}</title>
@@ -51,7 +81,7 @@ const TemplateWrapper = ({ children }) => {
       <Navbar />
       <div>{children}</div>
       <Footer />
-    </div>
+    </Grommet>
   )
 }
 
