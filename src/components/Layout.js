@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar'
 import './all.sass'
 import useSiteMetadata from './SiteMetadata'
 import { withPrefix } from 'gatsby'
-import { Grommet, Anchor, Box, Text, Nav } from "grommet"
+import { Grommet } from "grommet"
 import { materialLight } from "grommet/themes"
 
 const TemplateWrapper = ({ children }) => {
@@ -18,35 +18,7 @@ const TemplateWrapper = ({ children }) => {
         display: "flex",
         flexDirection: "column",
       }}
-    >
-    <Nav direction="row" background="brand" pad="medium">
-      <Anchor hoverIndicator>Home</Anchor>
-      <Anchor hoverIndicator>About</Anchor>
-      <Anchor hoverIndicator>Blog</Anchor>
-    </Nav>
-    <Box  animation="fadeIn" direction="row" height="medium">
-    
-    <Box 
-      border={{ color: 'brand', size: 'large' }}
-      pad="medium"
-      
-      background="brand"
-      fill="vertical"
-      flex="shrink"
-      justify="center"
-    >
-      <Text size="medium" weight="bold">Aruba</Text>
-    </Box>
-    <Box 
-      border={{ color: 'brand', size: 'large' }}
-      pad="medium"
-      justify="center"
-    >
-      <Text size="medium" color="brand" weight="bold">Testing</Text>
-    </Box>
-    </Box>
-    <Box>
-    
+    >   
       <Helmet>
         <html lang="en" />
         <title>{title}</title>
@@ -88,7 +60,6 @@ const TemplateWrapper = ({ children }) => {
       <Navbar />
       <div>{children}</div>
       <Footer />
-      </Box>
     </Grommet>
   )
 }
