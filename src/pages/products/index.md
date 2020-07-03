@@ -2,8 +2,6 @@
 heading: Great coffee with a conscience
 path: /products
 templateKey: product-page
-title: Your Coffee
-image: /img/jumbotron.jpg
 description: Kaldi is the ultimate spot for coffee lovers who want to learn
   about their java’s origin and support the farmers that grew it. We take coffee
   production, roasting and brewing seriously and we’re glad to pass that
@@ -67,6 +65,7 @@ testimonials:
     quote: Kaldi is the place to go if you want the best quality coffee. I love
       their stance on empowering farmers and transparency.
 full_image: /img/products-full-width.jpg
+test: ""
 pricing:
   heading: Monthly subscriptions
   description: We make it easy to make great coffee a part of your life. Choose
@@ -94,4 +93,6 @@ pricing:
         - Unlimited varieties
       plan: Custom
       price: ??
+title: Your Coffee
+image: /img/jumbotron.jpg
 ---

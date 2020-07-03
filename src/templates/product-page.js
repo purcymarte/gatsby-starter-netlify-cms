@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
+import {Heading, Paragraph, Text, Box, Main} from 'grommet'
 
 import Layout from '../components/Layout'
 import Features from '../components/Features'
@@ -11,6 +12,7 @@ import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 export const ProductPageTemplate = ({
   image,
   heading,
+  test,
   description,
   intro,
   main,
@@ -18,50 +20,34 @@ export const ProductPageTemplate = ({
   fullImage,
   pricing,
 }) => (
-  <div className="content">
-    <section className="section section--gradient">
-      <div className="container">
-        <div className="section">
-          <div className="columns">
-            <div className="column is-7 is-offset-1">
-              <h3 className="has-text-weight-semibold is-size-2">{heading}</h3>
-              <p>{description}</p>
-            </div>
-          </div>
-          <div className="columns">
-            <div className="column is-10 is-offset-1">
-
-              <Features gridItems={intro.blurbs} />
-
-              <div className="columns">
-                <div className="column is-7">
-                  <h3 className="has-text-weight-semibold is-size-3">
-                    {main.heading}
-                  </h3>
-                  <p>{main.description}</p>
-                </div>
-              </div>
-              <div className="tile is-ancestor">
-                <div className="tile is-vertical">
-                  <div className="tile">
-                    <div className="tile is-parent is-vertical">
-                      <article className="tile is-child">
-                        <PreviewCompatibleImage imageInfo={main.image1} />
-                      </article>
-                    </div>
-                    <div className="tile is-parent">
-                      <article className="tile is-child">
-                        <PreviewCompatibleImage imageInfo={main.image2} />
-                      </article>
-                    </div>
-                  </div>
-                  <div className="tile is-parent">
-                    <article className="tile is-child">
-                      <PreviewCompatibleImage imageInfo={main.image3} />
-                    </article>
-                  </div>
-                </div>
-              </div>
+      <Box align="center">
+        <Box width="xlarge">
+          <Box pad="large">
+              <Box pad={{bottom:"small"}}>
+                <Heading>{heading}</Heading>
+                {test ? <Heading>{test}</Heading> : null }
+              </Box>
+              <Text size="large">{description}</Text>
+          </Box>
+          <Box>
+            <Features gridItems={intro.blurbs} />
+              <Box pad="large">
+                <Box pad={{bottom:"small"}}>
+                  <Heading level={2}>{main.heading}</Heading>
+                </Box>
+                <Text size="large">{main.description}</Text>
+              </Box>
+              <Box direction="row" wrap="true" justify="center">
+                <Box width="480px" pad="16px">
+                  <PreviewCompatibleImage imageInfo={main.image1} />
+                </Box>
+                <Box width="480px" pad="16px">
+                  <PreviewCompatibleImage imageInfo={main.image2} />
+                </Box>
+                <Box width="960px" pad="16px">
+                  <PreviewCompatibleImage imageInfo={main.image3} />
+                </Box>
+              </Box>
               <Testimonials testimonials={testimonials} />
               <div
                 className="full-width-image-container"
@@ -73,22 +59,22 @@ export const ProductPageTemplate = ({
                   })`,
                 }}
               />
-              <h2 className="has-text-weight-semibold is-size-2">
-                {pricing.heading}
-              </h2>
-              <p className="is-size-5">{pricing.description}</p>
+              <Box pad={{bottom:"small"}}>
+                <Heading level={2}>
+                  {pricing.heading}
+                </Heading>
+              </Box>
+              <Text>{pricing.description}</Text>
               <Pricing data={pricing.plans} />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
+            </Box>
+          </Box>
+        </Box>
 )
 
 ProductPageTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   heading: PropTypes.string,
+  test: PropTypes.string,
   description: PropTypes.string,
   intro: PropTypes.shape({
     blurbs: PropTypes.array,
@@ -117,6 +103,7 @@ const ProductPage = ({ data }) => {
       <ProductPageTemplate
         image={frontmatter.image}
         heading={frontmatter.heading}
+        test={frontmatter.test}
         description={frontmatter.description}
         intro={frontmatter.intro}
         main={frontmatter.main}
@@ -143,6 +130,7 @@ export const productPageQuery = graphql`
     markdownRemark(id: { eq: $id }) {
       frontmatter {
         heading
+        test
         description
         intro {
           blurbs {

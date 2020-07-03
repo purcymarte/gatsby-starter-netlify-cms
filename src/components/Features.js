@@ -1,18 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Box, Paragraph} from 'grommet'
+import {Box, Text} from 'grommet'
 
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 
 const FeatureGrid = ({ gridItems }) => (
-  <Box direction="row" wrap="true">
+  <Box direction="row" wrap="true" justify="center">
     {gridItems.map((item) => (
-      <Box key={item.text} basis="medium" margin="medium">
+      <Box key={item.text} basis="medium" margin="medium" pad="medium">
         <Box basis="240px">
           <PreviewCompatibleImage imageInfo={item} />
         </Box>
-        <Box pad="medium">
-        <Paragraph>{item.text}</Paragraph>
+        <Box pad="medium" margin={{top:"medium"}}>
+        <Text>{item.text}</Text>
         </Box>
       </Box>
     ))}
