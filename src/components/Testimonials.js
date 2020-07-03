@@ -2,18 +2,18 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { v4 } from 'uuid'
 
+import {Box, Text} from 'grommet'
+import {BoxContent} from './styled/Boxes'
+
 const Testimonials = ({ testimonials }) => (
-  <div>
+  <BoxContent direction="row" justify="center" >
     {testimonials.map((testimonial) => (
-      <article key={v4()} className="message">
-        <div className="message-body">
-          {testimonial.quote}
-          <br />
+      <Box key={v4()} width="medium" pad="large" margin="medium" background="light-1" >
+          <Text>{testimonial.quote}</Text>
           <cite> – {testimonial.author}</cite>
-        </div>
-      </article>
+      </Box>
     ))}
-  </div>
+  </BoxContent>
 )
 
 Testimonials.propTypes = {

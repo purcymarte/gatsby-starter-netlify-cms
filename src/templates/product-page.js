@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import {Heading, Paragraph, Text, Box, Main} from 'grommet'
 
+import {BoxFullImage, BoxContent} from '../components/styled/Boxes'
 import Layout from '../components/Layout'
 import Features from '../components/Features'
 import Testimonials from '../components/Testimonials'
@@ -44,31 +45,29 @@ export const ProductPageTemplate = ({
                 <Box width="480px" pad="16px">
                   <PreviewCompatibleImage imageInfo={main.image2} />
                 </Box>
-                <Box width="960px" pad="16px">
-                  <PreviewCompatibleImage imageInfo={main.image3} />
-                </Box>
               </Box>
               <Testimonials testimonials={testimonials} />
-              <div
-                className="full-width-image-container"
-                style={{
-                  backgroundImage: `url(${
-                    fullImage.childImageSharp
-                      ? fullImage.childImageSharp.fluid.src
-                      : fullImage
-                  })`,
-                }}
-              />
-              <Box pad={{bottom:"small"}}>
-                <Heading level={2}>
-                  {pricing.heading}
-                </Heading>
-              </Box>
-              <Text>{pricing.description}</Text>
-              <Pricing data={pricing.plans} />
-            </Box>
           </Box>
         </Box>
+        
+          <BoxFullImage
+            height="400px"
+            width="100%"
+            margin={{top:"medium", bottom:"medium"}}
+            fullImage={fullImage}
+          />
+          <BoxContent>
+            <Box>
+            <Box pad={{bottom:"small"}}>
+              <Heading level={2}>
+                {pricing.heading}
+              </Heading>
+            </Box>
+            <Text>{pricing.description}</Text>
+            <Pricing data={pricing.plans} />
+          </Box>
+        </BoxContent>
+      </Box>
 )
 
 ProductPageTemplate.propTypes = {
@@ -83,8 +82,7 @@ ProductPageTemplate.propTypes = {
     heading: PropTypes.string,
     description: PropTypes.string,
     image1: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-    image2: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-    image3: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+    image2: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
   }),
   testimonials: PropTypes.array,
   fullImage: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
@@ -96,7 +94,7 @@ ProductPageTemplate.propTypes = {
 }
 
 const ProductPage = ({ data }) => {
-  const { frontmatter } = data.markdownRemark
+  // const { frontmatter } = data.markdownRemark
 
   return (
     <Layout>
@@ -125,83 +123,4 @@ ProductPage.propTypes = {
 
 export default ProductPage
 
-export const productPageQuery = graphql`
-  query ProductPage($id: String!) {
-    markdownRemark(id: { eq: $id }) {
-      frontmatter {
-        heading
-        test
-        description
-        intro {
-          blurbs {
-            image {
-              childImageSharp {
-                fluid(maxWidth: 240, quality: 64) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            text
-          }
-          heading
-          description
-        }
-        main {
-          heading
-          description
-          image1 {
-            alt
-            image {
-              childImageSharp {
-                fluid(maxWidth: 526, quality: 92) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-          image2 {
-            alt
-            image {
-              childImageSharp {
-                fluid(maxWidth: 526, quality: 92) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-          image3 {
-            alt
-            image {
-              childImageSharp {
-                fluid(maxWidth: 1075, quality: 72) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-        }
-        testimonials {
-          author
-          quote
-        }
-        full_image {
-          childImageSharp {
-            fluid(maxWidth: 2048, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        pricing {
-          heading
-          description
-          plans {
-            description
-            items
-            plan
-            price
-          }
-        }
-      }
-    }
-  }
-`
+

@@ -7,7 +7,7 @@ import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 const FeatureGrid = ({ gridItems }) => (
   <Box direction="row" wrap="true" justify="center">
     {gridItems.map((item) => (
-      <Box key={item.text} basis="medium" margin="medium" pad="medium">
+      <Box key={item.text} basis="medium" margin="medium" pad="medium" elevation="medium" round="medium">
         <Box basis="240px">
           <PreviewCompatibleImage imageInfo={item} />
         </Box>
